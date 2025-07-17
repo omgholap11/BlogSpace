@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.*.local
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Database (optional)
+*.sqlite
+*.db
+dump.sql
+
+# Dependency directories
+typings/
