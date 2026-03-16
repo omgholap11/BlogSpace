@@ -395,7 +395,7 @@ through Nginx proxy mapping.
 
 ---
 
-Build with ❤️ by om
+Build and deployed with ❤️ by om
 
 Email: iomgholap123@gmail.com
 
