@@ -9,6 +9,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import { checkForAuthenticationCookie } from "./Middleware/authentication.js";
+import 'dotenv/config'
 
 const app = express();
 const PORT = 5001;
@@ -16,7 +17,7 @@ const PORT = 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-connectMongoDB("mongodb://127.0.0.1:27017/blgospace");
+connectMongoDB(process.env.MONGO_URI);
 
 app.use(express.urlencoded({ extended: true })); //to parse form data
 app.use(express.json());
@@ -51,3 +52,9 @@ app.use("/blog",  blogroute);
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
 });
+
+
+// import promptsync from "prompt-sync";
+// const prompt = promptsync();
+// let name = prompt("Enter your name: ");
+// console.log("Hello, " + name);
