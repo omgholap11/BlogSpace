@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowLeft, Calendar, User, Clock, Heart, HeartOff, MessageCircle, Send } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { buildApiUrl } from '../api';
 
 export default function Blog() {
   const location = useLocation();
@@ -22,7 +23,7 @@ export default function Blog() {
     // Fetch comments if not already included in blog data
     const fetchComments = async () => {
         try {
-          const response = await axios.get(`http://localhost:5001/blog/getcomments/${blog._id}`, {
+          const response = await axios.get(buildApiUrl(`/blog/getcomments/${blog._id}`), {
             withCredentials: true,
           });
           setComments(response.data.comments);
@@ -43,7 +44,7 @@ export default function Blog() {
   useEffect(()=>{
     const fetchLikes = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/blog/getlikes/${blog._id}`, {
+        const response = await axios.get(buildApiUrl(`/blog/getlikes/${blog._id}`), {
           withCredentials: true,
         });
         const totalLikes = response.data.totalLikes;
@@ -72,7 +73,7 @@ export default function Blog() {
     }
     console.log(likeStatus);
     try {
-      const response = await axios.post(`http://localhost:5001/blog/${likeStatus}/${blog._id}`,
+      const response = await axios.post(buildApiUrl(`/blog/${likeStatus}/${blog._id}`),
         {},
         { withCredentials: true }
       );
@@ -105,7 +106,7 @@ export default function Blog() {
     
     try {
       const response = await axios.post(
-        `http://localhost:5001/blog/postcomment/${blog._id}`,
+        buildApiUrl(`/blog/postcomment/${blog._id}`),
         { content: newComment
          },
         { withCredentials: true }
@@ -149,7 +150,7 @@ export default function Blog() {
       <header className="fixed  bg-black bg-opacity-80 backdrop-blur-sm z-10 px-10 py-4">
         <div className="container mx-auto">
           <a 
-            href="http://localhost:5173" 
+            href="/" 
             className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors"
           >
             <ArrowLeft size={20} className="mr-2" />

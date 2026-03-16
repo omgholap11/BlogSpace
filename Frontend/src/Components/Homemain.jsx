@@ -2,12 +2,13 @@ import { useState , useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import { buildApiUrl } from "../api";
   
 export default function HomeMain() {
     const [blogs,setBlogs] = useState([]);
     const fetchBlogs = async ()=>{
         try{
-            const response = await axios.get("http://localhost:5001/blog/getblogs",
+        const response = await axios.get(buildApiUrl("/blog/getblogs"),
                 {
                     withCredentials : true,
                 });
@@ -48,7 +49,7 @@ const navigate = useNavigate();
   const handleReadBlog = async (blog)=>{
    
     try {
-      const response = await axios.get("http://localhost:5001/user/auth", { withCredentials: true });
+      const response = await axios.get(buildApiUrl("/user/auth"), { withCredentials: true });
       
       if (response.status === 200 && response.data) {
         console.log("User data:", response.data);

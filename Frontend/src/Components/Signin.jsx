@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Eye, EyeOff, AlertCircle, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl } from "../api";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ export default function Signin() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/user/signin",
+        buildApiUrl("/user/signin"),
         formData,
         {
             withCredentials : true

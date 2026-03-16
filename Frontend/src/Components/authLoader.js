@@ -1,8 +1,9 @@
 import axios from "axios";
+import { buildApiUrl } from "../api";
 
 export const checkAuthLoader = async () => {
   try {
-    const res = await axios.get("http://localhost:5001/gettokendetails", {
+    const res = await axios.get(buildApiUrl("/user/auth"), {
       withCredentials: true, // 👈 important to send cookies
     });
 

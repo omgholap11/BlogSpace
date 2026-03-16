@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Send, Image, X } from 'lucide-react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { buildApiUrl } from '../api';
 
 export default function BlogEditForm() {
   const location = useLocation();
@@ -61,7 +62,7 @@ export default function BlogEditForm() {
         }
         
         const response = await axios.put(
-          `http://localhost:5001/blog/updateblog/${blog._id}`,
+          buildApiUrl(`/blog/updateblog/${blog._id}`),
           formData,
           {
             headers: {

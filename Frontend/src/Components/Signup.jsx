@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Eye, EyeOff, Check, AlertCircle } from 'lucide-react';
 import axios from "axios";
 import { useNavigate }  from "react-router-dom"
+import { buildApiUrl } from "../api";
 export default function Signup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -73,7 +74,7 @@ export default function Signup() {
     }
 
     try {
-        const response = await axios.post("http://localhost:5001/user/signup",
+      const response = await axios.post(buildApiUrl("/user/signup"),
             formData,
             {
                 headers : {
@@ -119,7 +120,7 @@ export default function Signup() {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-400">
           Already have an account?{' '}
-          <a href="http://localhost:5173/signin" className="font-medium text-purple-400 hover:text-purple-300">
+          <a href="/signin" className="font-medium text-purple-400 hover:text-purple-300">
             Sign in
           </a>
         </p>

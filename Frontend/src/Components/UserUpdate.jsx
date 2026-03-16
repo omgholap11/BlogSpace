@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Camera, Upload, Image, Save, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { buildApiUrl } from "../api";
 
 export default function UserUpdate() {
     const navigate = useNavigate();
@@ -50,7 +51,7 @@ export default function UserUpdate() {
         
         try {
             const response = await axios.put(
-                "http://localhost:5001/user/updateprofile",
+                buildApiUrl("/user/updateprofile"),
                 formData,
                 {
                     withCredentials: true,

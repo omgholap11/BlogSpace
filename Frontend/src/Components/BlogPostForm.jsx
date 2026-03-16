@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Send, Image, X } from 'lucide-react';
 import axios from 'axios';
+import { buildApiUrl } from '../api';
 export default function BlogPostForm() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -43,7 +44,7 @@ export default function BlogPostForm() {
       formData.append('body', body);
       formData.append('coverImage', coverImage);
       try{
-        const response = await axios.post("http://localhost:5001/blog/postblog",
+        const response = await axios.post(buildApiUrl("/blog/postblog"),
             formData,
             {
                 headers : {

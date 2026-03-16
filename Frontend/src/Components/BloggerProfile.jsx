@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Settings, LogOut, User, X } from 'lucide-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { buildApiUrl } from '../api';
 
 export default function BloggerProfile() {
   const getBlogger = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/user/profile",
+      const response = await axios.get(buildApiUrl("/user/profile"),
         {
           withCredentials: true,
         }
@@ -49,7 +50,7 @@ export default function BloggerProfile() {
     // Here you would add the actual delete API call
     console.log("Deleting blog:", blogToDelete._id);
     try{
-      const response = await axios.delete(`http://localhost:5001/blog/deleteblog/${blogToDelete._id}`,
+      const response = await axios.delete(buildApiUrl(`/blog/deleteblog/${blogToDelete._id}`),
         {
           withCredentials : true,
         }

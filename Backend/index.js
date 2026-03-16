@@ -12,7 +12,8 @@ import { checkForAuthenticationCookie } from "./Middleware/authentication.js";
 import 'dotenv/config'
 
 const app = express();
-const PORT = 5001;
+const PORT = Number(process.env.PORT) || 5001;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +26,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     credentials: true,
   })
 );

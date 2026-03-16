@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Menu, User,LogOut , Settings , ChevronDown,ChevronUp, X } from 'lucide-react';
 import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl } from "../api";
 
 export default function Navbar() {
   const location = useLocation();
@@ -27,7 +28,7 @@ export default function Navbar() {
 
   const checkAuthentication = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/user/auth", { withCredentials: true });
+      const response = await axios.get(buildApiUrl("/user/auth"), { withCredentials: true });
       if (response.status === 200 && response.data.user) {
         setUserDetails(response.data.user);
         setIsAuthenticated(true);
@@ -39,7 +40,7 @@ export default function Navbar() {
 
   const handleUserLogOut = async ()=>{
     try{
-      const response = await axios.get("http://localhost:5001/user/logout",
+      const response = await axios.get(buildApiUrl("/user/logout"),
         {
           withCredentials : true
         });
@@ -107,13 +108,13 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a href="http://localhost:5173" className="font-bold text-3xl text-purple-700">BlogSpace</a>
+              <a href="/" className="font-bold text-3xl text-purple-700">BlogSpace</a>
             </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-6">
-                <a href="http://localhost:5173" className="hover:text-purple-700 font-medium">Home</a>
+                <a href="/" className="hover:text-purple-700 font-medium">Home</a>
                 <a href="#" className="hover:text-purple-700 font-medium">Features</a>
                 <a href="#" className="hover:text-purple-700 font-medium">Pricing</a>
 
@@ -215,7 +216,7 @@ export default function Navbar() {
        ) : (
         <header className="fixed z-50 top-4 left-1/2 transform -translate-x-1/2 w-3/5 bg-black border border-gray-500 rounded-2xl shadow-lg">
         <div className="px-4 py-3 flex justify-between items-center">
-          <a href='http://localhost:5173' className="font-bold text-3xl text-purple-700">
+          <a href='/' className="font-bold text-3xl text-purple-700">
             Blogger Dashboard
           </a>
 
